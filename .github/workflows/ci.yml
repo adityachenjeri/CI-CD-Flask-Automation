@@ -36,6 +36,9 @@ jobs:
                  pip install pytest
                  pip install flask
 
+            - name: "Listing the directories"
+              run: ls -A
+
             - name: "Runs Tests"
               run: python -m pytest test_app.py -v
               
