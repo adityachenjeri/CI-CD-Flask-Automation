@@ -30,8 +30,8 @@ jobs:
             - name: "Listing the directories"
               run: ls -A
 
- #           - name: "Installing Dependencies"
- #             run: pip install -r requirements.txt
+            - name: "Installing Dependencies"
+              run: pip install pytest
 
             - name: "Runs Tests"
               run: pytest test_app.py --maxfail=1 --disable-warnings -v
