@@ -1,0 +1,45 @@
+name: "CI Pipeline for the project push"
+
+on:
+    push:
+        branches:
+            - master
+            - test
+            - production
+            
+    workflow_dispatch:
+
+jobs:
+    install-test-and-deploy: #job name
+         runs-on: ubuntu-latest #environment which is light and fast
+    # also most cloud based CI/CD pipelines use linux environment, Also it is free and open source
+    #Which makes it work perfectly with most cloud deployment platforms
+   
+         steps:
+            - name: "Checkout Repository" # Ci pipeline doesn't have the access to directly access the repo files
+              uses: actions/checkout@v4 # So it clones the repo code into runner(V.M)
+
+            - name: "Setup Python"
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.10'
+
+            - name: "Check Python version"
+              run: python --version
+
+            - name: "Listing the directories"
+              run: ls -A
+
+            - name: "Installing Dependencies"
+              run: pip install -r requirements.txt
+
+            - name: "Runs Tests"
+              run: python -m pytest test_app.py -v
+
+        # Since we are deploying the flask app, we don't need to build the project since it is an interpreted language
+        # So compilation is not required (the process of converting souce code into machine code)
+            - name: "Uploading production ready build files"
+              uses: actions/upload-artifact@v4
+              with:
+                name: Production_Files_Folder
+                path: .
