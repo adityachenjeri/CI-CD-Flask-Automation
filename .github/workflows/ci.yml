@@ -34,7 +34,7 @@ jobs:
               run: pip install pytest
 
             - name: "Runs Tests"
-              run: pytest test_app.py --maxfail=1 --disable-warnings -v
+              run: python -m pytest test_app.py -v
               
               
 
