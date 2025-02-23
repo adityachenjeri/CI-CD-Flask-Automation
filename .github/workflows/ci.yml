@@ -31,7 +31,10 @@ jobs:
               run: ls -A
 
             - name: "Installing Dependencies"
-              run: pip install pytest
+              run: |
+                 python -m pip install --upgrade pip
+                 pip install pytest
+                 pip install flask pytest
 
             - name: "Runs Tests"
               run: python -m pytest test_app.py -v
