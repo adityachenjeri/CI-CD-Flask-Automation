@@ -34,7 +34,11 @@ jobs:
  #             run: pip install -r requirements.txt
 
             - name: "Runs Tests"
-              run: python -m pytest test_app.py -v
+              run: |
+                cd "C:\Users\91901\OneDrive\Desktop\Devops\CICD Project for Random_Jokes_Generator"
+                python -m pytest test_app.py -v
+              
+              
 
         # Since we are deploying the flask app, we don't need to build the project since it is an interpreted language
         # So compilation is not required (the process of converting souce code into machine code)
