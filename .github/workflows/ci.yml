@@ -34,10 +34,7 @@ jobs:
  #             run: pip install -r requirements.txt
 
             - name: "Runs Tests"
-              run: |
-                cd "C:\Users\91901\OneDrive\Desktop\Devops\CICD Project for Random_Jokes_Generator"
-                python -m pytest test_app.py -v
-              shell: cmd
+              run: pytest test_app.py --maxfail=1 --disable-warnings -v
               
               
 
