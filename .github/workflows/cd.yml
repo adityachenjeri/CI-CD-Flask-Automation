@@ -33,7 +33,7 @@ jobs:
                 #it will help us to access the tokens in github repo
 
             - name: "Deploy to vercel"
-              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN_FLASK }} --confirm --name=cicdproject --build-env FLASK_ENV=production
+              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN_FLASK }} --confirm --name=cicdproject
 
                 
                 
