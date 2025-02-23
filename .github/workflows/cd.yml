@@ -12,7 +12,7 @@ on:
 jobs:
     Deploy: #job name
         runs-on: ubuntu-latest
-        environment: production
+        environment: Production
 
         steps:
             - name: "Setup of Nodejs (Required for Vercel CLI Setup)"
@@ -21,7 +21,7 @@ jobs:
                 node-version: '21'
 
             - name: "setup Vercel CLI"
-              uses: npm install -g vercel
+              run: npm install -g vercel
 
             - name: "Download Production_Files_Folder"
               uses: actions/download-artifact@v4
