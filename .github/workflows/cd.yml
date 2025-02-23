@@ -1,0 +1,37 @@
+name: "Cd pipeline for the project"
+
+on:
+    workflow_run:
+        workflows: [ "CI Pipeline for the project push" ]
+        types:
+            - completed
+        
+    workflow_dispatch:
+
+    
+jobs:
+    Deploy: #job name
+        runs-on: ubuntu-latest
+        environment: production
+
+        steps:
+            - name: "Setup of Nodejs (Required for Vercel CLI Setup)"
+              uses: actions/setup-node@v4
+              with:
+                node-version: '21'
+
+            - name: "setup Vercel CLI"
+              uses: npm install -g vercel
+
+            - name: "Download Production_Files_Folder"
+              uses: actions/download-artifact@v4
+              with:
+                name: Production_Files_Folder
+                run-id: ${{ github.event.workflow_run.id }} 
+                #we mention run-id so that it will identify from which workflow it can download the artifacts 
+                github-token: ${{ github.token }}
+                #it will help us to access the tokens in github repo
+
+            - name: "Deploy to vercel"
+              run: vercel --prod --token=${{ secrets.VERCEL_TOKEN_FLASK }} --confirm --name=cicdproject
+        

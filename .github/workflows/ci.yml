@@ -47,4 +47,4 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: Production_Files_Folder
-                path: .
+                path: dist
